@@ -10,6 +10,10 @@ var testRouter = require('./routes/test');
 
 var app = express();
 
+// Swagger 설정 추가
+const { swaggerUi, swaggerSpec } = require("./swagger");
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
@@ -39,5 +43,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;
