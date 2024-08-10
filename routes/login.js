@@ -39,7 +39,7 @@ router.post("/", async function (req, res, next) {
 
         res.status(200).json({
             status: 200,
-            message: 'Login successful',
+            message: '로그인 성공!',
             data: {
                 user: user,
                 token: token
@@ -49,7 +49,7 @@ router.post("/", async function (req, res, next) {
     } catch (error) {
         res.status(500).json({
             status: 500,
-            message: 'Failed to authenticate user',
+            message: '로그인 실패!',
             error: error.message
         });
     }
