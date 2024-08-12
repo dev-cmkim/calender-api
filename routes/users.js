@@ -2,6 +2,9 @@ var express = require('express');
 var router = express.Router();
 
 var pool = require("../db/pool");
+const jwt = require('jsonwebtoken');
+
+
 
 // 유저조회
 router.get("/", function (req, res, next) {
@@ -57,7 +60,7 @@ router.post("/", async function (req, res, next) {
 
 })
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret_key';
+const JWT_SECRET = process.env.JWT_SECRET;
 // 토큰 체크
 function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
@@ -70,13 +73,8 @@ function authenticateToken(req, res, next) {
         });
     }
 
-    jwt.verify(token, JWT_SECRET, (err, user) => {
-        if (err) {
-            return res.status(403).json({
-                status: 403,
-                message: '유효하지 않은 토큰',
-            });
-        }
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+        if (err) return res.sendStatus(403); // 토큰 검증 실패 시 403 Forbidden
         req.user = user;
         next();
     });
@@ -88,6 +86,7 @@ router.get('/:user_id', authenticateToken, async function (req, res, next) {
 
     // Check if the user_id from the token matches the requested user_id
     if (userId !== req.user.id) {
+        console.log(userId,'.....', req.user.id)
         return res.status(403).json({
             status: 403,
             message: 'Token 을 확인하세요',
@@ -117,6 +116,9 @@ router.get('/:user_id', authenticateToken, async function (req, res, next) {
             message: 'Failed to retrieve user information',
             error: error.message,
         });
+
+        console.log('User ID:', userId);
+        console.log('Query result:', result.rows);
     }
 });
 
