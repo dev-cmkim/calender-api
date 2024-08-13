@@ -4,7 +4,7 @@ var pool = require('../db/pool');
 var jwt = require('jsonwebtoken');
 require('dotenv').config();  // Load environment variables
 
-const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret_key';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 /* POST login */
 router.post("/", async function (req, res, next) {
@@ -33,16 +33,28 @@ router.post("/", async function (req, res, next) {
 
         // Generate JWT token
         const user = result.rows[0];
-        const token = jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, {
+        const token = jwt.sign({ user_id: user.user_id, username: user.username }, JWT_SECRET, {
             expiresIn: '30d'  // 토큰만료기간 30일
         });
+
+        try {
+            const updateQuery = 'UPDATE users SET token = $1 WHERE user_id = $2';
+            await pool.query(updateQuery, [token, user.user_id]);
+
+        } catch (error) {
+            console.error('Error during token update:', error.message);
+            return res.status(500).json({
+                status: 500,
+                message: '토큰 저장에 실패했습니다.',
+                error: error.message
+            });
+        }
 
         res.status(200).json({
             status: 200,
             message: '로그인 성공!',
             data: {
                 user: user,
-                token: token
             }
         });
 
