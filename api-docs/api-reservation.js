@@ -1,0 +1,122 @@
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Reservation:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: integer
+ *           description: 예약 ID
+ *         username:
+ *           type: string
+ *           description: 예약자 이름
+ *         reservation_date:
+ *           type: string
+ *           format: date
+ *           description: 예약 날짜
+ *       required:
+ *         - username
+ *         - reservation_date
+ */
+
+/**
+ * @swagger
+ * /reservation:
+ *   post:
+ *     summary: 예약 생성
+ *     description: 새로운 예약을 생성합니다. 동일한 날짜에 같은 사용자가 중복 예약할 수 없습니다.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: 예약자 이름
+ *               reservation_date:
+ *                 type: string
+ *                 format: date
+ *                 description: 예약 날짜 (YYYY-MM-DD)
+ *             required:
+ *               - username
+ *               - reservation_date
+ *     responses:
+ *       201:
+ *         description: 예약이 성공적으로 생성되었습니다.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Reservation'
+ *       400:
+ *         description: 동일한 날짜에 이미 예약이 존재합니다.
+ *       500:
+ *         description: 서버 오류로 예약 생성 실패
+ */
+
+/**
+ * @swagger
+ * /cancel-reservation:
+ *   delete:
+ *     summary: 예약 취소
+ *     description: 특정 날짜의 예약을 취소합니다.
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: 예약자 이름
+ *               reservation_date:
+ *                 type: string
+ *                 format: date
+ *                 description: 예약 날짜 (YYYY-MM-DD)
+ *             required:
+ *               - username
+ *               - reservation_date
+ *     responses:
+ *       200:
+ *         description: 예약이 성공적으로 취소되었습니다.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Reservation'
+ *       404:
+ *         description: 해당 날짜에 예약이 존재하지 않습니다.
+ *       500:
+ *         description: 서버 오류로 예약 취소 실패
+ */
+
+/**
+ * @swagger
+ * /reservation/{date}:
+ *   get:
+ *     summary: 특정 날짜의 예약 조회
+ *     description: 특정 날짜에 대한 예약 정보를 조회합니다.
+ *     parameters:
+ *       - in: path
+ *         name: date
+ *         schema:
+ *           type: string
+ *           format: date
+ *         required: true
+ *         description: 예약 날짜 (YYYY-MM-DD)
+ *     responses:
+ *       200:
+ *         description: 해당 날짜의 예약 정보
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Reservation'
+ *       404:
+ *         description: 해당 날짜에 예약이 존재하지 않습니다.
+ *       500:
+ *         description: 서버 오류로 예약 조회 실패
+ */
