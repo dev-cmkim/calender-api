@@ -93,7 +93,7 @@ router.get('/:date', async function (req, res, next) {
 });
 
 // 예약 취소 API
-router.delete('/cancel-reservation', async (req, res) => {
+router.delete('/cancel-reservation', authenticateToken, async (req, res) => {
     const {user_id, reservation_dt} = req.body;
 
     try {
@@ -104,6 +104,7 @@ router.delete('/cancel-reservation', async (req, res) => {
             WHERE user_id = $1
               AND reservation_dt = $2
         `;
+
         const checkResult = await pool.query(checkQuery, [user_id, reservation_dt]);
 
         if (checkResult.rows.length === 0) {
