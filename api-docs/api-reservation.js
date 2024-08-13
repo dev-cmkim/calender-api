@@ -11,13 +11,13 @@
  *         username:
  *           type: string
  *           description: 예약자 이름
- *         reservation_date:
+ *         reservation_dt:
  *           type: string
  *           format: date
  *           description: 예약 날짜
  *       required:
  *         - username
- *         - reservation_date
+ *         - reservation_dt
  */
 
 /**
@@ -36,13 +36,13 @@
  *               username:
  *                 type: string
  *                 description: 예약자 이름
- *               reservation_date:
+ *               reservation_dt:
  *                 type: string
  *                 format: date
  *                 description: 예약 날짜 (YYYY-MM-DD)
  *             required:
  *               - username
- *               - reservation_date
+ *               - reservation_dt
  *     responses:
  *       201:
  *         description: 예약이 성공적으로 생성되었습니다.
@@ -72,13 +72,13 @@
  *               username:
  *                 type: string
  *                 description: 예약자 이름
- *               reservation_date:
+ *               reservation_dt:
  *                 type: string
  *                 format: date
  *                 description: 예약 날짜 (YYYY-MM-DD)
  *             required:
  *               - username
- *               - reservation_date
+ *               - reservation_dt
  *     responses:
  *       200:
  *         description: 예약이 성공적으로 취소되었습니다.

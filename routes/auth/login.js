@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var pool = require('../db/pool');
+var pool = require('../../db/pool');
 var jwt = require('jsonwebtoken');
 require('dotenv').config();  // Load environment variables
 
@@ -55,6 +55,7 @@ router.post("/", async function (req, res, next) {
             message: '로그인 성공!',
             data: {
                 user: user,
+                token: token
             }
         });
 
