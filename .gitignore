@@ -1,0 +1,41 @@
+# Node modules - 외부 라이브러리 및 의존성
+node_modules/
+
+# npm 패키지 캐시
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# 디렉토리에서의 npm 및 yarn 캐시
+.npm/
+.yarn/
+
+# 빌드 디렉토리 (npm 또는 yarn 빌드가 생성할 수 있는 디렉토리)
+dist/
+build/
+
+# 환경 변수 파일 - 보안 정보가 포함될 수 있음
+.env
+
+# Vercel 배포 파일 및 디렉토리
+.vercel/
+
+# 로컬 개발 환경에서 생성된 파일 및 디렉토리
+*.log
+*.pid
+*.swp
+*.swo
+
+# OS 또는 IDE에서 생성된 임시 파일
+.DS_Store
+Thumbs.db
+*.sublime-project
+*.sublime-workspace
+
+# IDE/편집기 특정 파일
+.vscode/
+.idea/
+
+# NPM 및 Yarn lock 파일
+package-lock.json
+yarn.lock
