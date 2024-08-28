@@ -1,11 +1,13 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-    user: "myuser",
-    host: "127.0.0.1",
-    database: "mydb",
-    password: "qwer123$",
-    port: 5432,
+    host: '34.134.7.195',    // Google Cloud PostgreSQL의 공용 IP 주소
+    port: 5432,              // 기본 포트 번호
+    database: 'postgres',
+    user: 'coldme',
+    password: 'qwer123$',
+    ssl: {
+        rejectUnauthorized: false,  // 필요에 따라 SSL 설정 (기본적으로 false로 설정)
+    },
 });
-
 module.exports = pool
