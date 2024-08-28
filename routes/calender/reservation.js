@@ -20,7 +20,7 @@ router.post('/', authenticateToken, async (req, res) => {
         if (reservationCount >= 2) {
             return res.status(400).json({
                 status: 400,
-                message: '같은 날짜에 최대 두 개의 예약만 가능합니다.',
+                message: '같은 날짜에 최대 두 개까지 가능함.',
             });
         }
 
@@ -36,7 +36,7 @@ router.post('/', authenticateToken, async (req, res) => {
         if (checkResult.rows.length > 0) {
             return res.status(400).json({
                 status: 400,
-                message: '같은 날짜에 이미 예약이 존재합니다.',
+                message: '같은 날짜에 이미 예약이 존재함.',
             });
         }
 
@@ -49,14 +49,14 @@ router.post('/', authenticateToken, async (req, res) => {
 
         return res.status(201).json({
             status: 201,
-            message: '예약이 성공적으로 추가되었습니다.',
+            message: '예약 성공!.',
             data: insertResult.rows[0],
         });
     } catch (error) {
         console.error('Error creating reservation:', error);
         return res.status(500).json({
             status: 500,
-            message: '예약을 생성하는 중에 오류가 발생했습니다.',
+            message: '예약 실패, 오류 발생..',
             error: error.message,
         });
     }
@@ -75,7 +75,7 @@ router.get('/:date', async function (req, res, next) {
         if (result.rows.length === 0) {
             return res.status(404).json({
                 status: 404,
-                message: 'No reservations found for the given date'
+                message: '해당 날짜에 예약이 존재하지 않음.',
             });
         }
 
@@ -86,7 +86,7 @@ router.get('/:date', async function (req, res, next) {
     } catch (error) {
         res.status(500).json({
             status: 500,
-            message: 'Failed to retrieve reservations',
+            message: '예약 조회 실패!',
             error: error.message,
         });
     }
@@ -110,7 +110,7 @@ router.delete('/cancel-reservation', authenticateToken, async (req, res) => {
         if (checkResult.rows.length === 0) {
             return res.status(404).json({
                 status: 404,
-                message: '해당 날짜에 예약이 존재하지 않습니다.',
+                message: '해당 날짜에 예약이 존재하지 않음.',
             });
         }
 
@@ -125,14 +125,14 @@ router.delete('/cancel-reservation', authenticateToken, async (req, res) => {
 
         return res.status(200).json({
             status: 200,
-            message: '예약이 성공적으로 취소되었습니다.',
+            message: '예약취소 성공.',
             data: deleteResult.rows[0],
         });
     } catch (error) {
         console.error('Error cancelling reservation:', error);
         return res.status(500).json({
             status: 500,
-            message: '예약을 취소하는 중에 오류가 발생했습니다.',
+            message: '예약취소 실패! 오류발생..',
             error: error.message,
         });
     }

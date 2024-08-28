@@ -23,7 +23,7 @@ router.post("/", async function (req, res, next) {
     if (!username || !password) {
         return res.status(400).json({
             status: 400,
-            message: '이름과 비밀번호는 필수값일세.'
+            message: '이름과 비밀번호는 필수임.'
         });
     }
 
@@ -33,7 +33,7 @@ router.post("/", async function (req, res, next) {
         if (userCheck.rows.length > 0) {
             return res.status(401).json({
                 status: 401,
-                message: '이미 존재하는 사용자랍니다?'
+                message: '이미 존재하는 사용자.'
             });
         }
 
@@ -66,7 +66,7 @@ router.get('/:user_id', authenticateToken, async function (req, res, next) {
     if (userId !== req.user.user_id) {
         return res.status(403).json({
             status: 403,
-            message: 'Token 을 확인하세요',
+            message: 'Token 확인 필요.',
         });
     }
 
@@ -79,7 +79,7 @@ router.get('/:user_id', authenticateToken, async function (req, res, next) {
         if (userResult.rows.length === 0) {
             return res.status(404).json({
                 status: 404,
-                message: 'User not found',
+                message: '해당 유저가 없음.',
             });
         }
 
@@ -99,7 +99,7 @@ router.get('/:user_id', authenticateToken, async function (req, res, next) {
     } catch (error) {
         res.status(500).json({
             status: 500,
-            message: 'Failed to retrieve user information',
+            message: '예약 조회 실패.',
             error: error.message,
         });
     }
