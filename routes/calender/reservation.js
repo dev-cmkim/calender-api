@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../../db/pool');
-var authenticateToken = require('../../middlewares/authenticateToken');
+var authenticateToken = require('../../middlewares/authenticatetoken');
 
 // 예약 생성 API
 router.post('/', authenticateToken, async (req, res) => {

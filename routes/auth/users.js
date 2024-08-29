@@ -3,7 +3,7 @@ var router = express.Router();
 
 var pool = require("../../db/pool");
 
-var authenticateToken = require('../../middlewares/authenticateToken')
+var authenticateToken = require('../../middlewares/authenticatetoken')
 // 유저조회
 router.get("/", function (req, res, next) {
     pool.query("SELECT user_id, username, created_at FROM users", function (error, result) {
