@@ -39,3 +39,4 @@ Thumbs.db
 # NPM 및 Yarn lock 파일
 package-lock.json
 yarn.lock
+.vercel
