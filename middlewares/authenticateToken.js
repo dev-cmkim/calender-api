@@ -4,7 +4,7 @@ require('dotenv').config();  // Load environment variables
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-async function authenticatetoken(req, res, next) {
+async function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization'];
     const token = authHeader && authHeader.split(' ')[1];
 
@@ -43,4 +43,4 @@ async function authenticatetoken(req, res, next) {
     }
 }
 
-module.exports = authenticatetoken;
+module.exports = authenticateToken;
