@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/auth/users');
@@ -13,6 +14,9 @@ var app = express();
 // Swagger 설정 추가
 const { swaggerUi, swaggerSpec } = require("./swagger");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))
+
+//cors 설정
+app.use(cors());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
