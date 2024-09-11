@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "prebuild": "git config core.ignorecase false",
     "build": "echo 'No build necessary' && exit 0",
-    "postinstall": "npm install uglify-js",
+    "postinstall": "npm install uglify-js"
 
   },
   "dependencies": {
