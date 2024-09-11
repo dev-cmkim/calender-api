@@ -15,15 +15,16 @@ var app = express();
 const { swaggerUi, swaggerSpec } = require("./swagger");
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'jade');
+
 //cors 설정
 app.use(cors());
-
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

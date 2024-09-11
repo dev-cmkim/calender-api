@@ -10,7 +10,7 @@ const swaggerDefinition = {
     },
     servers: [
         {
-            url: 'https://calender-htbwhro0e-devcmkims-projects.vercel.app',
+            url: 'http://localhost:3000',
         },
     ],
 };
