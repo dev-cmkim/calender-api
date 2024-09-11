@@ -2,6 +2,10 @@
   "name": "calender-api",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": "19,1,0",
+    "npm": ">=6.0.0"
+  },
   "scripts": {
     "start": "node ./bin/www",
     "build": "echo 'No build necessary' && exit 0"
