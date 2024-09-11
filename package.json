@@ -2,10 +2,6 @@
   "name": "calender-api",
   "version": "0.0.0",
   "private": true,
-  "engines": {
-    "node": "20.x",
-    "npm": ">=6.0.0"
-  },
   "scripts": {
     "start": "node ./bin/www",
     "build": "echo 'No build necessary' && exit 0"
@@ -21,7 +17,6 @@
     "morgan": "~1.10.0",
     "pg": "^8.12.0",
     "swagger-jsdoc": "^6.2.8",
-    "swagger-ui-express": "^5.0.1",
-    "uglify-js": "^3.19.3"
+    "swagger-ui-express": "^5.0.1"
   }
 }
