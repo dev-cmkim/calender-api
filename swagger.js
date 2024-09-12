@@ -12,6 +12,9 @@ const swaggerDefinition = {
         {
             url: 'http://localhost:3000',
         },
+        {
+            url :'https://calender-api-gules.vercel.app/',
+        },
     ],
 };
 
