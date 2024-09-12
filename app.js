@@ -19,10 +19,10 @@ app.use(express.urlencoded({ extended: false }));
 
 // CORS 설정
 const corsOptions = {
-  origin: '*', // 해당 URL 주소만 요청을 허락함
+  origin: 'http://localhost:3000', // 요청을 허용할 도메인 (프론트엔드 도메인)
   credentials: true // 사용자 인증이 필요한 리소스를 요청할 수 있도록 허용함
 }
-app.use(cors(corsOptions)) // cors 설정 미들웨어
+app.use(cors()) // cors 설정 미들웨어
 
 // Swagger API 문서화 미들웨어 설정
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
